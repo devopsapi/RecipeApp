@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/text1"
+    style="@style/radioBtn"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/tab_selector"
+    android:paddingStart="5dp"
+    android:paddingTop="11dp"
+    android:paddingEnd="5dp"
+    android:paddingBottom="15dp"
+    android:textColor="@color/tab_text_selector"
+    tools:text="@string/ingredients" />
