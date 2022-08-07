@@ -30,7 +30,7 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
         override fun onBind(item: Recipe) {
             itemBinding.apply {
                 recipeTitle.text = item.title
-                timeForCook.text = "${item.cookingMinutes.toString()} + min"
+                timeForCook.text = "${item.readyInMinutes} + min"
                 likes.text = item.aggregateLikes.toString()
 
                 Glide.with(itemBinding.root.context)
