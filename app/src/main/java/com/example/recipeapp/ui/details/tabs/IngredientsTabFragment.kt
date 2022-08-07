@@ -43,7 +43,10 @@ class IngredientsTabFragment : Fragment() {
 
     private fun observeData() {
         recipeDetailViewModel.recipe.observe(viewLifecycleOwner) { recipe ->
-            binding.caloriesAmount.text = recipe.healthScore.toString()
+            val regex = "(\\d+) calories".toRegex()
+            val match = regex.find(recipe.summary)
+            val caloriesAmount = match?.value?.split(" ")
+            binding.caloriesAmount.text = caloriesAmount?.get(0) ?: "--"
             binding.servingsAmount.text = recipe.servings.toString()
             ingredientAdapter.setData(recipe.extendedIngredients)
         }

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipeapp.data.models.ExtendedIngredient
 import com.example.recipeapp.databinding.IngredientItemBinding
+import kotlin.math.roundToInt
 
 class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {
 
@@ -21,7 +22,7 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsVi
         BaseViewHolder<ExtendedIngredient>(binding.root) {
         override fun onBind(item: ExtendedIngredient) {
             binding.ingredientTitle.text = item.name.replaceFirstChar { it.uppercase() }
-            binding.ingredientAmount.text = item.amount.toString()
+            binding.ingredientAmount.text = String.format("%.1f", item.amount)
         }
     }
 
