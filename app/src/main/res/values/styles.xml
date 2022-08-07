@@ -25,4 +25,16 @@
         <item name="fontFamily">@font/montserrat_regular</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
+    <style name="steps">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="steps_desc">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

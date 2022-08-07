@@ -1,6 +1,6 @@
 package com.example.recipeapp.utils
 
 object Utils {
-    const val API = "7ed74decc09d42ccbfe036e591e0332c"
+    const val API = "810a97b07a434836bb574cb77e72ca84"
     const val BASE_URL = "https://api.spoonacular.com/"
 }

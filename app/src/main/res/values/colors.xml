@@ -12,4 +12,5 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="grey_dark">#5E5E5E</color>
     <color name="violet_m">#7A7AC7</color>
+    <color name="violet_light">#9F9FF0</color>
 </resources>
