@@ -70,9 +70,6 @@ class RecipeDetailsFragment : Fragment() {
                     .error(R.drawable.ic_blank_photo)
                     .into(binding.recipeImg)
             }
-            progressBar.observe(viewLifecycleOwner) { isLoading ->
-                binding.prBar.isVisible = isLoading
-            }
             error.observe(viewLifecycleOwner) { errorMsg ->
                 Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show()
             }

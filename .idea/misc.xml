@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/custom_background_grey.xml" value="0.1135" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/custom_bottom_nav.xml" value="0.1345" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/custom_btn_calculate.xml" value="0.119" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/custom_close.xml" value="0.1375" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/custom_progress_bar.xml" value="0.1375" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/custom_search.xml" value="0.1345" />
@@ -26,9 +27,10 @@
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_briefly_tab.xml" value="0.165625" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_favourite_recipes.xml" value="0.1796875" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_home.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_ingredients_tab.xml" value="0.165625" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_ingredients_tab.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_profile.xml" value="0.165625" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_recipe_details.xml" value="0.22" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/ingredient_item.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/recipe_item.xml" value="0.22" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/tab_title.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/menu/bottom_nav.xml" value="0.3333333333333333" />

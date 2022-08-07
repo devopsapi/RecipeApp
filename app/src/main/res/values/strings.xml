@@ -10,4 +10,7 @@
     <string name="briefly">BRIEFLY</string>
     <string name="let_s_cook">LET\'S COOK</string>
     <string name="ingredients">INGREDIENTS</string>
+    <string name="calculate">Calculate</string>
+    <string name="servings">Servings</string>
+    <string name="calories">Calories</string>
 </resources>

@@ -15,6 +15,7 @@ data class Recipe(
     val glutenFree: Boolean,
     val healthScore: Int,
     val id: Int,
+    val spoonacularScore: Float,
     val image: String,
     val imageType: String,
     val instructions: String,

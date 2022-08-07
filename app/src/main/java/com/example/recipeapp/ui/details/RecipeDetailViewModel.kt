@@ -1,5 +1,6 @@
 package com.example.recipeapp.ui.details
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,23 +16,24 @@ import javax.inject.Inject
 class RecipeDetailViewModel @Inject constructor(private val repository: RecipeRepository) :
     ViewModel() {
 
+    private val TAG = "RECIPE_DETAILS_TAG"
+
+    init {
+        Log.i(TAG, "recipeDetailViewModel init")
+    }
+
     private val _recipe = MutableLiveData<Recipe>()
     val recipe: LiveData<Recipe> = _recipe
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-    private val _progressBar = MutableLiveData<Boolean>()
-    val progressBar: LiveData<Boolean> = _progressBar
-
     fun getRecipeById(id: Int) {
-        _progressBar.postValue(true)
         viewModelScope.launch {
             when (val result = repository.getRecipeById(id)) {
                 is Result.Success -> _recipe.postValue(result.data)
                 is Result.Error -> _error.postValue(result.exception.toString())
             }
-            _progressBar.postValue(false)
         }
     }
 }
