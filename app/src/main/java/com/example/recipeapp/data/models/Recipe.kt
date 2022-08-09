@@ -37,5 +37,6 @@ data class Recipe(
     val vegetarian: Boolean,
     val veryHealthy: Boolean,
     val veryPopular: Boolean,
-    val weightWatcherSmartPoints: Int
+    val weightWatcherSmartPoints: Int,
+    var calories: Int = 0
 )

@@ -32,6 +32,15 @@ class IngredientsTabFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
         observeData()
+        setUpCalculateBtn()
+    }
+
+    private fun setUpCalculateBtn() {
+        binding.calculateBtn.setOnClickListener {
+            recipeDetailViewModel.calculateNewCaloriesAndIngredientsAmount(
+                binding.servingsAmount.text.toString().toInt()
+            )
+        }
     }
 
     private fun setUpRecyclerView() {
@@ -43,12 +52,11 @@ class IngredientsTabFragment : Fragment() {
 
     private fun observeData() {
         recipeDetailViewModel.recipe.observe(viewLifecycleOwner) { recipe ->
-            val regex = "(\\d+) calories".toRegex()
-            val match = regex.find(recipe.summary)
-            val caloriesAmount = match?.value?.split(" ")
-            binding.caloriesAmount.text = caloriesAmount?.get(0) ?: "--"
-            binding.servingsAmount.text = recipe.servings.toString()
-            ingredientAdapter.setData(recipe.extendedIngredients)
+            binding.servingsAmount.setText(recipe.servings.toString())
+        }
+        recipeDetailViewModel.calculatedIngredient.observe(viewLifecycleOwner) { calculatedIngredient ->
+            binding.caloriesAmount.text = calculatedIngredient.caloriesAmount.toString()
+            ingredientAdapter.setData(calculatedIngredient.extendedIngredient)
         }
     }
 }

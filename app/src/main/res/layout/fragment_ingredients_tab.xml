@@ -41,12 +41,13 @@
                 app:layout_constraintStart_toEndOf="@id/group_img"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/servings_amount"
                 style="@style/ingredients"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:inputType="number"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/servings_txt"
                 app:layout_constraintStart_toEndOf="@id/servings_txt"
