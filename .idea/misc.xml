@@ -10,28 +10,39 @@
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/custom_progress_bar.xml" value="0.1375" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/custom_search.xml" value="0.1345" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/custom_tab_indicator.xml" value="0.1135" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/dark_gradient.xml" value="0.165" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/ic_close.xml" value="0.1375" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/ic_empty_heart.xml" value="0.138" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/ic_favorite.xml" value="0.1345" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/ic_full_heart.xml" value="0.188" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/ic_home.xml" value="0.188" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/ic_search.xml" value="0.1345" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/ic_small_favorite.xml" value="0.1375" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/radio_btn_checked.xml" value="0.1375" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/radio_btn_selector.xml" value="0.1375" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/radio_btn_unchecked.xml" value="0.1375" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/round_violet_background.xml" value="0.138" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/round_violet_btn.xml" value="0.151" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/round_white_btn.xml" value="0.1455" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/step_number_background.xml" value="0.1775" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/tab_background.xml" value="0.1135" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/tab_checked.xml" value="0.1135" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/tab_selector.xml" value="0.1135" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/tab_text_selector.xml" value="0.1135" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/tab_unchecked.xml" value="0.1135" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/drawable/white_round_background.xml" value="0.1455" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/font/fonts.xml" value="0.17136752136752137" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_auth.xml" value="0.22" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_briefly_tab.xml" value="0.22" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_favourite_recipes.xml" value="0.1796875" />
-        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_home.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_ingredients_tab.xml" value="0.2997393570807993" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_lets_cook_tab.xml" value="0.22" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_login.xml" value="0.22" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_profile.xml" value="0.165625" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_recipe_details.xml" value="0.22" />
+        <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/fragment_registration.xml" value="0.22" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/ingredient_item.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/recipe_item.xml" value="0.22" />
         <entry key="..\:/Users/Yuli/Desktop/RecipeApp/app/src/main/res/layout/step_item.xml" value="0.3333333333333333" />

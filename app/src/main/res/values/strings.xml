@@ -13,4 +13,12 @@
     <string name="calculate">Calculate</string>
     <string name="servings">Servings</string>
     <string name="calories">Calories</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="don_t_have_account_yet_sing_up">Don\'t have account yet? Sing up</string>
+    <string name="already_have_account_sign_in">Already have account? Sign in</string>
+    <string name="create_account">Create account</string>
+    <string name="confirm_password">Confirm password</string>
 </resources>

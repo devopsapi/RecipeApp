@@ -59,7 +59,8 @@
             motion:layout_editor_absoluteY="20dp"
             android:layout_height="1dp"
             android:layout_width="wrap_content"
-            android:id="@+id/btn_close" />
+            android:id="@+id/btn_close"
+            android:visibility="invisible" />
         <Constraint
             android:layout_height="wrap_content"
             motion:layout_constraintGuide_percent="0.0"
@@ -76,5 +77,13 @@
             android:visibility="visible"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:elevation="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            motion:layout_goneMarginBottom="0dp"
+            android:id="@+id/btn_favourite"
+            motion:layout_editor_absoluteX="0dp"
+            android:visibility="invisible" />
     </ConstraintSet>
 </MotionScene>

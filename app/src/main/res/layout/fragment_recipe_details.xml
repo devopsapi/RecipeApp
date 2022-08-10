@@ -23,12 +23,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="@drawable/custom_close"
+        android:background="@drawable/white_round_background"
         android:elevation="10dp"
         android:padding="15dp"
         android:src="@drawable/ic_close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_favourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/white_round_background"
+        android:elevation="10dp"
+        android:padding="15dp"
+        android:src="@drawable/ic_empty_heart"
+        app:layout_constraintBottom_toBottomOf="@id/guideline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_goneMarginBottom="-30dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"

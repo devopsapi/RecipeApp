@@ -1,5 +1,6 @@
 package com.example.recipeapp.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.recipeapp.R
 import com.example.recipeapp.databinding.FragmentHomeBinding
 import com.example.recipeapp.ui.adapters.OnRecipeClickListener
 import com.example.recipeapp.ui.adapters.RecipeAdapter
+import com.example.recipeapp.utils.Utils
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,11 +43,26 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav).visibility =
+            View.VISIBLE
+
+        setUpLogoutBtn()
         setUpAdapter()
         setUpRecyclerView()
         observeData()
         setUpSwipeLayout()
         setUpSearch()
+    }
+
+    private fun setUpLogoutBtn() {
+        binding.logout.setOnClickListener {
+            val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
+            with(sharedPref.edit()) {
+                putBoolean(Utils.IS_LOGGED_KEY, false)
+                apply()
+            }
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+        }
     }
 
     private fun setUpSearch() {
