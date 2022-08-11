@@ -30,9 +30,22 @@ class IngredientsTabFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setUpIncDecBtn()
         setUpRecyclerView()
         observeData()
         setUpCalculateBtn()
+    }
+
+    private fun setUpIncDecBtn() {
+        binding.incBtn.setOnClickListener {
+            val oldAmount = binding.servingsAmount.text.toString().toInt()
+            binding.servingsAmount.text = (oldAmount + 1).toString()
+        }
+        binding.decBtn.setOnClickListener {
+            val oldAmount = binding.servingsAmount.text.toString().toInt()
+            binding.servingsAmount.text = (oldAmount - 1).toString()
+        }
     }
 
     private fun setUpCalculateBtn() {
@@ -52,7 +65,7 @@ class IngredientsTabFragment : Fragment() {
 
     private fun observeData() {
         recipeDetailViewModel.recipe.observe(viewLifecycleOwner) { recipe ->
-            binding.servingsAmount.setText(recipe.servings.toString())
+            binding.servingsAmount.text = recipe.servings.toString()
         }
         recipeDetailViewModel.calculatedIngredient.observe(viewLifecycleOwner) { calculatedIngredient ->
             binding.caloriesAmount.text = calculatedIngredient.caloriesAmount.toString()
