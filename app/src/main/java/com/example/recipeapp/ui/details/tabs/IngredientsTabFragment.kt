@@ -43,8 +43,10 @@ class IngredientsTabFragment : Fragment() {
             binding.servingsAmount.text = (oldAmount + 1).toString()
         }
         binding.decBtn.setOnClickListener {
-            val oldAmount = binding.servingsAmount.text.toString().toInt()
-            binding.servingsAmount.text = (oldAmount - 1).toString()
+            if (binding.servingsAmount.text.toString().toInt() > 0) {
+                val oldAmount = binding.servingsAmount.text.toString().toInt()
+                binding.servingsAmount.text = (oldAmount - 1).toString()
+            }
         }
     }
 

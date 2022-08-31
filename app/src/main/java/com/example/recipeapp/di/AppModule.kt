@@ -1,5 +1,6 @@
 package com.example.recipeapp.di
 
+import com.example.recipeapp.BuildConfig
 import com.example.recipeapp.data.api.RecipeApi
 import com.example.recipeapp.data.repositories.RecipeRepository
 import com.example.recipeapp.data.repositories.RecipeRepositoryImp
@@ -29,7 +30,7 @@ object AppModule {
             val request = chain.request().newBuilder()
             val originalHttpUrl = chain.request().url()
             val url =
-                originalHttpUrl.newBuilder().addQueryParameter("apiKey", Utils.API)
+                originalHttpUrl.newBuilder().addQueryParameter("apiKey", BuildConfig.API_KEY)
                     .build()
             request.url(url)
             return@addInterceptor chain.proceed(request.build())

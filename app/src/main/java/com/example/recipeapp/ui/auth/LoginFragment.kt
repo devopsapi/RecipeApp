@@ -48,6 +48,7 @@ class LoginFragment : Fragment() {
         binding.loginBtn.setOnClickListener {
             if (checkFields()) {
                 binding.progressBar.visibility = View.VISIBLE
+                binding.loginBtn.isEnabled = false
                 firebaseAuth.signInWithEmailAndPassword(
                     binding.emailEt.text.toString(),
                     binding.passwordEt.text.toString()
