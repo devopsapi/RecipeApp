@@ -4,13 +4,17 @@ import com.example.recipeapp.BuildConfig
 import com.example.recipeapp.data.api.RecipeApi
 import com.example.recipeapp.data.repositories.RecipeRepository
 import com.example.recipeapp.data.repositories.RecipeRepositoryImp
-import com.example.recipeapp.utils.Utils
+import com.example.recipeapp.utils.Constants
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -40,7 +44,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(Utils.BASE_URL)
+        .baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .client(okHttpClient)
         .build()
@@ -53,4 +57,15 @@ object AppModule {
     @Singleton
     fun provideRecipeRepository(recipeApi: RecipeApi): RecipeRepository =
         RecipeRepositoryImp(recipeApi)
+
+    @Provides
+    @Singleton
+    fun provideDatabaseReference(): DatabaseReference =
+        FirebaseDatabase.getInstance().getReference("users")
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(): FirebaseAuth =
+        FirebaseAuth.getInstance()
+
 }

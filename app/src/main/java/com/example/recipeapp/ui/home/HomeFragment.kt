@@ -16,7 +16,7 @@ import com.example.recipeapp.R
 import com.example.recipeapp.databinding.FragmentHomeBinding
 import com.example.recipeapp.ui.adapters.OnRecipeClickListener
 import com.example.recipeapp.ui.adapters.RecipeAdapter
-import com.example.recipeapp.utils.Utils
+import com.example.recipeapp.utils.Constants
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -58,7 +58,7 @@ class HomeFragment : Fragment() {
         binding.logout.setOnClickListener {
             val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
             with(sharedPref.edit()) {
-                putBoolean(Utils.IS_LOGGED_KEY, false)
+                putBoolean(Constants.IS_LOGGED_KEY, false)
                 apply()
             }
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())

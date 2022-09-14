@@ -7,24 +7,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.recipeapp.R
 import com.example.recipeapp.databinding.FragmentRegistrationBinding
+import com.example.recipeapp.ui.util.Routes
+import com.example.recipeapp.ui.util.UiEvent
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RegistrationFragment : Fragment() {
 
     private lateinit var binding: FragmentRegistrationBinding
-    private lateinit var firebaseAuth: FirebaseAuth
+    private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentRegistrationBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -33,32 +35,44 @@ class RegistrationFragment : Fragment() {
 
         requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav).visibility = View.GONE
 
-        firebaseAuth = FirebaseAuth.getInstance()
-
         binding.createBtn.setOnClickListener {
-            if (checkFields()) {
-                binding.progressBar.visibility = View.VISIBLE
-                firebaseAuth.createUserWithEmailAndPassword(
+            if (correctFields()) {
+                it.isEnabled = false
+                authViewModel.registerUser(
                     binding.emailEt.text.toString(),
                     binding.passwordEt.text.toString()
-                ).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        binding.progressBar.visibility = View.INVISIBLE
-                        findNavController().navigate(RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment())
-                    } else {
-                        Toast.makeText(context, it.exception.toString(), Toast.LENGTH_LONG).show()
-                    }
-                }
+                )
             }
         }
 
         binding.signInTxt.setOnClickListener {
-            findNavController().navigate(RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment())
+            navigateToRoute(Routes.NAVIGATE_TO_LOGIN)
+        }
+
+        observeData()
+    }
+
+    private fun observeData() {
+        authViewModel.uiEvent.observe(viewLifecycleOwner) { uiEvent ->
+            when (uiEvent) {
+                is UiEvent.Loading -> binding.progressBar.visibility =
+                    if (uiEvent.isLoading) View.VISIBLE else View.INVISIBLE
+                is UiEvent.Navigate -> navigateToRoute(uiEvent.route)
+                is UiEvent.ShowToast -> Toast.makeText(context, uiEvent.message, Toast.LENGTH_LONG)
+                    .show()
+            }
         }
     }
 
+    private fun navigateToRoute(route: String) {
+        when (route) {
+            Routes.NAVIGATE_TO_LOGIN -> findNavController().navigate(RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment())
+            Routes.NAVIGATE_TO_HOME -> findNavController().navigate(RegistrationFragmentDirections.actionRegistrationFragmentToHomeFragment())
+            else -> findNavController().navigate(RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment())
+        }
+    }
 
-    private fun checkFields(): Boolean {
+    private fun correctFields(): Boolean {
         if (binding.emailEt.text.isNullOrEmpty()) {
             binding.emailEt.error = "Required field"
             return false

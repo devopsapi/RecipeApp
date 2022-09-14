@@ -47,6 +47,10 @@ class RecipeDetailsFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+        binding.btnFavourite.setOnClickListener {
+
+        }
+
         setUpViewPager()
         observeData()
     }
