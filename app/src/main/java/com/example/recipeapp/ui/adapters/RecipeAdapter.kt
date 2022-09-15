@@ -31,7 +31,6 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
             itemBinding.apply {
                 recipeTitle.text = item.title
                 timeForCook.text = "${item.readyInMinutes} + min"
-                likes.text = item.aggregateLikes.toString()
 
                 Glide.with(itemBinding.root.context)
                     .load(item.image)
