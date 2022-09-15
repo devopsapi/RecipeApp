@@ -1,9 +1,11 @@
 package com.example.recipeapp.di
 
 import com.example.recipeapp.BuildConfig
-import com.example.recipeapp.data.api.RecipeApi
 import com.example.recipeapp.data.repositories.RecipeRepository
 import com.example.recipeapp.data.repositories.RecipeRepositoryImp
+import com.example.recipeapp.data.source.remote.RecipeNetworkDataSourceImp
+import com.example.recipeapp.data.source.remote.RecipeRemoteDataSource
+import com.example.recipeapp.data.source.remote.api.RecipeApi
 import com.example.recipeapp.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -14,7 +16,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -55,8 +56,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRecipeRepository(recipeApi: RecipeApi): RecipeRepository =
-        RecipeRepositoryImp(recipeApi)
+    fun provideRecipeRemoteDataSource(recipeApi: RecipeApi): RecipeRemoteDataSource =
+        RecipeNetworkDataSourceImp(recipeApi)
 
     @Provides
     @Singleton
@@ -68,4 +69,10 @@ object AppModule {
     fun provideFirebaseAuth(): FirebaseAuth =
         FirebaseAuth.getInstance()
 
+    @Provides
+    @Singleton
+    fun provideRecipeRepository(
+        recipeRemoteDataSource: RecipeRemoteDataSource
+    ): RecipeRepository =
+        RecipeRepositoryImp(recipeRemoteDataSource)
 }

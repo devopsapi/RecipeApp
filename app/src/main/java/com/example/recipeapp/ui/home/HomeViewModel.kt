@@ -25,12 +25,19 @@ class HomeViewModel @Inject constructor(private val recipeRepository: RecipeRepo
     private val _progressBar = MutableLiveData<Boolean>()
     val progressBar: LiveData<Boolean> = _progressBar
 
-    fun getRandomRecipes(recipeNumber: Int = 100) {
+    init {
+        getRecipes()
+    }
+
+    fun getRecipes(recipeNumber: Int = 100) {
         _progressBar.value = true
         viewModelScope.launch {
-            when (val result = recipeRepository.getRandomRecipe(recipeNumber)) {
-                is Result.Success -> _recipes.value = result.data.recipes
-                is Result.Error -> _error.value = result.exception.toString()
+            when (val result = recipeRepository.getRecipes(recipeNumber, false)) {
+                is Result.Success -> _recipes.value = result.data
+                is Result.Error -> {
+                    Log.i("TAG", "Error: ${result.exception}")
+                    _error.value = result.exception.toString()
+                }
             }
             _progressBar.value = false
         }

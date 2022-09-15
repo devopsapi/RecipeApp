@@ -27,11 +27,6 @@ class HomeFragment : Fragment() {
     private val recipeAdapter = RecipeAdapter()
     private val homeViewModel: HomeViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        homeViewModel.getRandomRecipes()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -85,7 +80,7 @@ class HomeFragment : Fragment() {
         binding.swipeLayout.apply {
             setOnRefreshListener {
                 if (binding.searchView.query.isNullOrEmpty()) {
-                    homeViewModel.getRandomRecipes()
+                    homeViewModel.getRecipes()
                 } else {
                     homeViewModel.getSpecificRecipe(binding.searchView.query.toString())
                 }

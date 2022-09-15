@@ -1,4 +1,4 @@
-package com.example.recipeapp.data.api
+package com.example.recipeapp.data.source.remote.api
 
 import com.example.recipeapp.data.models.Recipe
 import com.example.recipeapp.data.models.RecipeResponse
