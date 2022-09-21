@@ -10,6 +10,8 @@ import com.example.recipeapp.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -56,7 +58,9 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRecipeRemoteDataSource(recipeApi: RecipeApi): RecipeRemoteDataSource =
+    fun provideRecipeRemoteDataSource(
+        recipeApi: RecipeApi
+    ): RecipeRemoteDataSource =
         RecipeNetworkDataSourceImp(recipeApi)
 
     @Provides
@@ -68,6 +72,17 @@ object AppModule {
     @Singleton
     fun provideFirebaseAuth(): FirebaseAuth =
         FirebaseAuth.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideFirebaseFirestore(): FirebaseFirestore =
+        FirebaseFirestore.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideCollectionReference(firebaseFirestore: FirebaseFirestore): CollectionReference =
+        firebaseFirestore.collection(Constants.USER_COLLECTION)
+
 
     @Provides
     @Singleton

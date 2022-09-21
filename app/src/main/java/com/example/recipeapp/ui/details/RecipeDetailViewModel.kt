@@ -9,7 +9,10 @@ import com.example.recipeapp.data.models.ExtendedIngredient
 import com.example.recipeapp.data.models.CalculatedIngredient
 import com.example.recipeapp.data.models.Recipe
 import com.example.recipeapp.data.repositories.RecipeRepository
+import com.example.recipeapp.utils.Constants
 import com.example.recipeapp.utils.Result
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,7 +20,11 @@ import java.util.ArrayList
 import javax.inject.Inject
 
 @HiltViewModel
-class RecipeDetailViewModel @Inject constructor(private val repository: RecipeRepository) :
+class RecipeDetailViewModel @Inject constructor(
+    private val repository: RecipeRepository,
+    private val firebaseAuth: FirebaseAuth,
+    private val collectionReference: CollectionReference
+) :
     ViewModel() {
 
     private val TAG = "RECIPE_DETAILS_TAG"
@@ -28,6 +35,9 @@ class RecipeDetailViewModel @Inject constructor(private val repository: RecipeRe
 
     private val _recipe = MutableLiveData<Recipe>()
     val recipe: LiveData<Recipe> = _recipe
+
+    private val _isFavourite = MutableLiveData<Boolean>(false)
+    val isFavourite: LiveData<Boolean> = _isFavourite
 
     private val _calculatedIngredient = MutableLiveData<CalculatedIngredient>()
     val calculatedIngredient: LiveData<CalculatedIngredient> = _calculatedIngredient
@@ -40,9 +50,41 @@ class RecipeDetailViewModel @Inject constructor(private val repository: RecipeRe
     private var defaultIngredients = emptyList<ExtendedIngredient>()
     private var previousUserInput = 0
 
-    fun getRecipeById(id: Int) {
+    fun setFavorite(recipeId: Int) {
         viewModelScope.launch {
-            when (val result = repository.getRecipeById(id)) {
+            val documentReference = collectionReference.document(firebaseAuth.uid ?: "")
+            documentReference.collection(Constants.FAVORITE_COLLECTION)
+                .whereEqualTo(Constants.RECIPE_ID_FIELD, recipeId)
+                .limit(1)
+                .get()
+                .addOnSuccessListener { recipeDocs ->
+                    if (recipeDocs.size() == 0) {
+                        val recipeMap = hashMapOf<String, Int>()
+                        recipeMap[Constants.RECIPE_ID_FIELD] = recipeId
+                        documentReference.collection(Constants.FAVORITE_COLLECTION)
+                            .add(recipeMap)
+                            .addOnSuccessListener {
+                                _isFavourite.postValue(true)
+                            }
+                            .addOnFailureListener {
+                                _error.postValue(it.message)
+                            }
+                    } else {
+                        documentReference.collection(Constants.FAVORITE_COLLECTION)
+                            .document(recipeDocs.documents[0].id).delete()
+                        _isFavourite.postValue(false)
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    _error.postValue(exception.message)
+                }
+        }
+    }
+
+
+    fun getRecipeById(recipeId: Int) {
+        viewModelScope.launch {
+            when (val result = repository.getRecipeById(recipeId)) {
                 is Result.Success -> {
 
                     // Convert HTML tags in summary text
@@ -57,6 +99,23 @@ class RecipeDetailViewModel @Inject constructor(private val repository: RecipeRe
                             result.data.extendedIngredients
                         )
                     )
+
+                    val documentReference = collectionReference.document(firebaseAuth.uid ?: "")
+                    documentReference.collection(Constants.FAVORITE_COLLECTION)
+                        .whereEqualTo(Constants.RECIPE_ID_FIELD, recipeId)
+                        .limit(1)
+                        .get()
+                        .addOnSuccessListener { recipeDocs ->
+                            Log.i(TAG, "Recipe_Docs size: ${recipeDocs.size()}")
+                            if (recipeDocs.size() != 0) {
+                                _isFavourite.postValue(true)
+                            } else {
+                                _isFavourite.postValue(false)
+                            }
+                        }
+                        .addOnFailureListener { exception ->
+                            _error.postValue(exception.message)
+                        }
 
                     _recipe.postValue(result.data)
 

@@ -37,7 +37,6 @@ class RegistrationFragment : Fragment() {
 
         binding.createBtn.setOnClickListener {
             if (correctFields()) {
-                it.isEnabled = false
                 authViewModel.registerUser(
                     binding.emailEt.text.toString(),
                     binding.passwordEt.text.toString()
@@ -55,8 +54,15 @@ class RegistrationFragment : Fragment() {
     private fun observeData() {
         authViewModel.uiEvent.observe(viewLifecycleOwner) { uiEvent ->
             when (uiEvent) {
-                is UiEvent.Loading -> binding.progressBar.visibility =
-                    if (uiEvent.isLoading) View.VISIBLE else View.INVISIBLE
+                is UiEvent.Loading -> {
+                    binding.createBtn.isEnabled = !uiEvent.isLoading
+                    binding.createBtn.background =
+                        if (uiEvent.isLoading) resources.getDrawable(R.drawable.disabled_btn) else resources.getDrawable(
+                            R.drawable.round_violet_btn
+                        )
+                    binding.progressBar.visibility =
+                        if (uiEvent.isLoading) View.VISIBLE else View.INVISIBLE
+                }
                 is UiEvent.Navigate -> navigateToRoute(uiEvent.route)
                 is UiEvent.ShowToast -> Toast.makeText(context, uiEvent.message, Toast.LENGTH_LONG)
                     .show()

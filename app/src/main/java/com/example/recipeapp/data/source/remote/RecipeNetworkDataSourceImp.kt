@@ -3,11 +3,15 @@ package com.example.recipeapp.data.source.remote
 import com.example.recipeapp.data.models.Recipe
 import com.example.recipeapp.data.models.SpecificRecipes
 import com.example.recipeapp.data.source.remote.api.RecipeApi
+import com.example.recipeapp.utils.Constants
 import com.example.recipeapp.utils.Result
-import java.lang.Exception
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
 import javax.inject.Inject
 
-class RecipeNetworkDataSourceImp @Inject constructor(private val recipeApi: RecipeApi) :
+class RecipeNetworkDataSourceImp @Inject constructor(
+    private val recipeApi: RecipeApi
+) :
     RecipeRemoteDataSource {
 
     override suspend fun getRecipes(recipeAmount: Int): Result<List<Recipe>> {

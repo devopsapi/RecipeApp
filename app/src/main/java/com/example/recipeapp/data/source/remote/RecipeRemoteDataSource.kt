@@ -6,8 +6,6 @@ import com.example.recipeapp.utils.Result
 
 interface RecipeRemoteDataSource {
     suspend fun getRecipes(recipeAmount: Int): Result<List<Recipe>>
-
     suspend fun getRecipeById(recipeId: Int): Result<Recipe>
-
     suspend fun getSpecificRecipes(query: String): Result<SpecificRecipes>
 }

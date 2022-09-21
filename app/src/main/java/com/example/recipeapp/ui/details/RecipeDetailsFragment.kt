@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -48,7 +47,7 @@ class RecipeDetailsFragment : Fragment() {
         }
 
         binding.btnFavourite.setOnClickListener {
-
+            recipeDetailViewModel.setFavorite(safeArgs.recipeId)
         }
 
         setUpViewPager()
@@ -73,6 +72,10 @@ class RecipeDetailsFragment : Fragment() {
                     .load(recipe.image)
                     .error(R.drawable.ic_blank_photo)
                     .into(binding.recipeImg)
+            }
+            isFavourite.observe(viewLifecycleOwner) { isFav ->
+                if (isFav) binding.btnFavourite.setImageResource(R.drawable.ic_full_heart)
+                else binding.btnFavourite.setImageResource(R.drawable.ic_empty_heart)
             }
             error.observe(viewLifecycleOwner) { errorMsg ->
                 Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show()
