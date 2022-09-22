@@ -22,7 +22,7 @@ class RecipeNetworkDataSourceImp @Inject constructor(
         }
     }
 
-    override suspend fun getRecipeById(recipeId: Int): Result<Recipe> {
+    override suspend fun getRecipeById(recipeId: Long): Result<Recipe> {
         return try {
             Result.Success(recipeApi.getRecipeById(recipeId))
         } catch (e: Exception) {
@@ -37,5 +37,4 @@ class RecipeNetworkDataSourceImp @Inject constructor(
             Result.Error(e)
         }
     }
-
 }

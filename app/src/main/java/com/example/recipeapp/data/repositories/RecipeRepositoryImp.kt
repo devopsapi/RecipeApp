@@ -19,7 +19,7 @@ class RecipeRepositoryImp @Inject constructor(
         return recipeRemoteDataSource.getRecipes(recipeAmount)
     }
 
-    override suspend fun getRecipeById(id: Int): Result<Recipe> {
+    override suspend fun getRecipeById(id: Long): Result<Recipe> {
         return recipeRemoteDataSource.getRecipeById(id)
     }
 

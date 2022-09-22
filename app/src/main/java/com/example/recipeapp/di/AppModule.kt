@@ -66,7 +66,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideDatabaseReference(): DatabaseReference =
-        FirebaseDatabase.getInstance().getReference("users")
+        FirebaseDatabase.getInstance().getReference(Constants.USER_COLLECTION)
 
     @Provides
     @Singleton

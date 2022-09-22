@@ -27,7 +27,7 @@ class RecipeDetailsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        recipeDetailViewModel.getRecipeById(safeArgs.recipeId)
+        recipeDetailViewModel.getRecipeById(safeArgs.recipeId.toLong())
     }
 
     override fun onCreateView(

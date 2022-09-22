@@ -1,6 +1,5 @@
 package com.example.recipeapp.ui.details
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,16 +26,10 @@ class RecipeDetailViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    private val TAG = "RECIPE_DETAILS_TAG"
-
-    init {
-        Log.i(TAG, "recipeDetailViewModel init")
-    }
-
     private val _recipe = MutableLiveData<Recipe>()
     val recipe: LiveData<Recipe> = _recipe
 
-    private val _isFavourite = MutableLiveData<Boolean>(false)
+    private val _isFavourite = MutableLiveData(false)
     val isFavourite: LiveData<Boolean> = _isFavourite
 
     private val _calculatedIngredient = MutableLiveData<CalculatedIngredient>()
@@ -82,7 +75,7 @@ class RecipeDetailViewModel @Inject constructor(
     }
 
 
-    fun getRecipeById(recipeId: Int) {
+    fun getRecipeById(recipeId: Long) {
         viewModelScope.launch {
             when (val result = repository.getRecipeById(recipeId)) {
                 is Result.Success -> {
@@ -106,7 +99,6 @@ class RecipeDetailViewModel @Inject constructor(
                         .limit(1)
                         .get()
                         .addOnSuccessListener { recipeDocs ->
-                            Log.i(TAG, "Recipe_Docs size: ${recipeDocs.size()}")
                             if (recipeDocs.size() != 0) {
                                 _isFavourite.postValue(true)
                             } else {

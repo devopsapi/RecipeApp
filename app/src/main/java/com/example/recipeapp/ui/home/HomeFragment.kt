@@ -113,7 +113,7 @@ class HomeFragment : Fragment() {
             recipes.observe(viewLifecycleOwner) { recipes ->
                 recipeAdapter.setData(recipes)
             }
-            progressBar.observe(viewLifecycleOwner) { isLoading ->
+            loading.observe(viewLifecycleOwner) { isLoading ->
                 binding.prBar.isVisible = isLoading
             }
             error.observe(viewLifecycleOwner) { errorMsg ->

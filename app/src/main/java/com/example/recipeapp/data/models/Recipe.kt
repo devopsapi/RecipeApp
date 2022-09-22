@@ -1,9 +1,11 @@
 package com.example.recipeapp.data.models
 
+import java.util.ArrayList
+
 data class Recipe(
     val aggregateLikes: Int = 0,
-    val analyzedInstructions: List<AnalyzedInstruction>,
-    val extendedIngredients: List<ExtendedIngredient>,
+    val analyzedInstructions: List<AnalyzedInstruction> = ArrayList<AnalyzedInstruction>(),
+    val extendedIngredients: List<ExtendedIngredient> =  ArrayList<ExtendedIngredient>(),
     val id: Int = 0,
     val image: String = "",
     val instructions: String = "",

@@ -15,7 +15,7 @@ interface RecipeApi {
 
     @GET("recipes/{id}/information")
     suspend fun getRecipeById(
-        @Path("id") id: Int
+        @Path("id") id: Long
     ): Recipe
 
     @GET("recipes/complexSearch")

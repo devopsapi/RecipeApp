@@ -16,7 +16,8 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(recipes: List<Recipe>) {
-        this.recipes = recipes as ArrayList<Recipe>
+        this.recipes.clear()
+        this.recipes.addAll(recipes)
         this.notifyDataSetChanged()
     }
 

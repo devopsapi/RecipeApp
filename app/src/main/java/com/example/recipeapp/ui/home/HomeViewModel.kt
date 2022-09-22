@@ -22,15 +22,15 @@ class HomeViewModel @Inject constructor(private val recipeRepository: RecipeRepo
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-    private val _progressBar = MutableLiveData<Boolean>()
-    val progressBar: LiveData<Boolean> = _progressBar
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
 
     init {
         getRecipes()
     }
 
     fun getRecipes(recipeNumber: Int = 100) {
-        _progressBar.value = true
+        _loading.value = true
         viewModelScope.launch {
             when (val result = recipeRepository.getRecipes(recipeNumber, false)) {
                 is Result.Success -> _recipes.value = result.data
@@ -39,18 +39,18 @@ class HomeViewModel @Inject constructor(private val recipeRepository: RecipeRepo
                     _error.value = result.exception.toString()
                 }
             }
-            _progressBar.value = false
+            _loading.value = false
         }
     }
 
     fun getSpecificRecipe(query: String) {
-        _progressBar.value = true
+        _loading.value = true
         viewModelScope.launch {
             when (val result = recipeRepository.getSpecificRecipe(query)) {
                 is Result.Success -> _recipes.value = result.data.results
                 is Result.Error -> _error.value = result.exception.toString()
             }
-            _progressBar.value = false
+            _loading.value = false
         }
     }
 }

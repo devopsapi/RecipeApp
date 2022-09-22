@@ -1,6 +1,5 @@
 package com.example.recipeapp.ui.auth
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,7 +26,6 @@ class AuthViewModel @Inject constructor(
             if (task.isSuccessful) {
                 _uiEvent.postValue(UiEvent.Navigate(Routes.NAVIGATE_TO_HOME))
             } else {
-                Log.i("TAG", task.exception.toString())
                 _uiEvent.value = UiEvent.Loading(isLoading = false)
                 _uiEvent.value = UiEvent.ShowToast(task.exception.toString())
             }
@@ -47,14 +45,12 @@ class AuthViewModel @Inject constructor(
                         if (firebaseFirestoreTask.isSuccessful) {
                             _uiEvent.postValue(UiEvent.Navigate(Routes.NAVIGATE_TO_HOME))
                         } else {
-                            Log.i("TAG", firebaseFirestoreTask.exception.toString())
                             _uiEvent.value = UiEvent.Loading(isLoading = false)
                             _uiEvent.value =
                                 UiEvent.ShowToast(firebaseFirestoreTask.exception.toString())
                         }
                     }
                 } else {
-                    Log.i("TAG", firebaseAuthTask.exception.toString())
                     _uiEvent.value = UiEvent.Loading(isLoading = false)
                     _uiEvent.value = UiEvent.ShowToast(firebaseAuthTask.exception.toString())
                 }

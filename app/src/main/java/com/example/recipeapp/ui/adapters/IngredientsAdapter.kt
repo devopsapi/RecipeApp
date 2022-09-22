@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipeapp.data.models.ExtendedIngredient
 import com.example.recipeapp.databinding.IngredientItemBinding
-import kotlin.math.roundToInt
 
 class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {
 
