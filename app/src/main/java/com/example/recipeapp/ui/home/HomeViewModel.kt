@@ -9,6 +9,8 @@ import com.example.recipeapp.data.models.Recipe
 import com.example.recipeapp.data.repositories.RecipeRepository
 import com.example.recipeapp.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,8 +21,8 @@ class HomeViewModel @Inject constructor(private val recipeRepository: RecipeRepo
     private val _recipes = MutableLiveData<List<Recipe>>()
     val recipes: LiveData<List<Recipe>> = _recipes
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> = _error
+    private val _error = MutableSharedFlow<String>()
+    val error: SharedFlow<String> = _error
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
@@ -36,7 +38,7 @@ class HomeViewModel @Inject constructor(private val recipeRepository: RecipeRepo
                 is Result.Success -> _recipes.value = result.data
                 is Result.Error -> {
                     Log.i("TAG", "Error: ${result.exception}")
-                    _error.value = result.exception.toString()
+                   _error.emit(result.exception.toString())
                 }
             }
             _loading.value = false
@@ -48,7 +50,7 @@ class HomeViewModel @Inject constructor(private val recipeRepository: RecipeRepo
         viewModelScope.launch {
             when (val result = recipeRepository.getSpecificRecipe(query)) {
                 is Result.Success -> _recipes.value = result.data.results
-                is Result.Error -> _error.value = result.exception.toString()
+                is Result.Error -> _error.emit(result.exception.toString())
             }
             _loading.value = false
         }

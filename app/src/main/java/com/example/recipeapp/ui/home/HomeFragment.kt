@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipeapp.R
@@ -19,6 +20,7 @@ import com.example.recipeapp.ui.adapters.RecipeAdapter
 import com.example.recipeapp.utils.Constants
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -116,8 +118,14 @@ class HomeFragment : Fragment() {
             loading.observe(viewLifecycleOwner) { isLoading ->
                 binding.prBar.isVisible = isLoading
             }
-            error.observe(viewLifecycleOwner) { errorMsg ->
-                Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show()
+//            error.observe(viewLifecycleOwner) { errorMsg ->
+//                Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show()
+//            }
+
+            lifecycleScope.launchWhenStarted {
+                error.collectLatest { errorMsg ->
+                    Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
